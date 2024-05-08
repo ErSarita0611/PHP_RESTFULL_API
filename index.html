@@ -86,7 +86,7 @@
   function loadTable(){ 
     $("#load-table").html("");
     $.ajax({ 
-      url : 'http://localhost/PHP_RESTFULL_API/api-fetch-all.php',
+      url : 'http://localhost/php-rest-api/api-fetch-all.php',
       type : "GET",
       success : function(data){
         if(data.status == false){

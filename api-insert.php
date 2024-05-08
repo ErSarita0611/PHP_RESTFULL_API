@@ -1,29 +1,25 @@
 <?php
-
-header('Content_Type: application/json');
+header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access_Control_Allow_Method: POST');
-header('Access_Control_Allow_Headers: Access_Control_Allow_Headers,Content_Type,Access_Control_Allow_Methods,Authorization,X-Requested-Width');
-
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$sname = $data['sname'];
-$age = $data['age'];
-$city = $data['city'];
+$name = $data['sname'];
+$age = $data['sage'];
+$city = $data['scity'];
 
 include "config.php";
 
-$sql = "INSERT INTO student(student_name, age, city) VALUE ('{$sname}','{$age}','{$city}')";
+$sql = "INSERT INTO student(student_name, age, city) VALUES ('{$name}', {$age}, '{$city}')";
 
-if (mysqli_query($conn, $sql)){
+if(mysqli_query($conn, $sql)){
+	echo json_encode(array('message' => 'Student Record Inserted.', 'status' => true));
 
-    echo json_encode(array('massage' => 'Student Recode Inserted.', 'status' => true));
-    
 }else{
-    echo json_encode(array('massage' => 'Student Recode Not Inserted.', 'status' => false));
+
+ echo json_encode(array('message' => 'Student Record Not Inserted.', 'status' => false));
 
 }
-
-
 ?>
